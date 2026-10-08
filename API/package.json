@@ -1,0 +1,25 @@
+{
+  "name": "backend-software-development",
+  "version": "1.0.0",
+  "description": "API Test",
+  "homepage": "https://github.com/aftabfarhanarko/Backend-Golang#readme",
+  "bugs": {
+    "url": "https://github.com/aftabfarhanarko/Backend-Golang/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aftabfarhanarko/Backend-Golang.git"
+  },
+  "license": "ISC",
+  "author": "ark8",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
