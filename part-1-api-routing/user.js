@@ -1,24 +1,50 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const Joi = require("joi");
 
-router.get('/user/:id', (req, res) => {
-    const userId = req.params.id;
-    const filter = req.query.filter;
+// Joi validation schema
+const userSchema = Joi.object({
+  name: Joi.string().min(3).max(50).required(),
+  age: Joi.number().integer().min(1).max(120).required(),
+  address: Joi.string().min(3).max(100).optional().allow("", null),
+  locations: Joi.string().optional().allow("", null),
+}).unknown(true);
 
-    res.status(200).send(`User ID: ${userId}, Filter: ${filter}`);
+// OOP concept
+class User {
+  constructor({ name, age, address, locations }) {
+    this.name = name;
+    this.age = age;
+    this.address = address;
+    this.locations = locations;
+  }
+}
+
+router.get("/user/:id", (req, res) => {
+  const userId = req.params.id;
+  const filter = req.query.filter;
+
+  res.status(200).send(`User ID: ${userId}, Filter: ${filter}`);
 });
 
-router.post('/user', (req, res) => {
-    const { name, age } = req.body || {};
-    console.log(name, age);
-    if (!name || !age) {
-        return res.status(400).json({ message: "Name and age are required" });
-    }
+router.post("/user", (req, res) => {
+  // Validate request body with Joi
+  const { error, value } = userSchema.validate(req.body);
 
-    res.status(201).json({
-        message: "User created Successfully",
-        user: { name, age }
+  if (error) {
+    return res.status(400).json({
+      success: false,
+      message: error.details[0].message,
     });
+  }
+
+  const user = new User(value);
+
+  res.status(201).json({
+    success: true,
+    message: "User created Successfully",
+    user: user,
+  });
 });
 
 module.exports = router;
