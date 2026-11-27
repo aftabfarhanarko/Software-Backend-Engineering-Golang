@@ -35,30 +35,126 @@
       }
     }
   </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18251f;
+      --muted: #68756e;
+      --paper: #f4f3ee;
+      --line: #e4e5dd;
+      --forest: #244b3c;
+      --brass: #c5a66a;
+    }
+
+    body {
+      background: var(--paper) !important;
+      color: var(--ink) !important;
+    }
+
+    .page-content {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.35fr);
+      align-items: start;
+      gap: 1.5rem;
+    }
+
+    .page-header {
+      background: #172820 !important;
+      border-color: #263a30 !important;
+      box-shadow: 0 18px 45px rgb(24 37 31 / 12%) !important;
+    }
+
+    .page-header > div:first-child {
+      background: #172820 !important;
+    }
+
+    .page-header .brand-mark {
+      color: #e0c58d !important;
+      background: rgb(255 255 255 / 8%) !important;
+      border-color: rgb(255 255 255 / 15%) !important;
+    }
+
+    .surface {
+      border-color: var(--line) !important;
+      border-radius: 1.2rem !important;
+      box-shadow: 0 12px 34px rgb(24 37 31 / 6%) !important;
+    }
+
+    .field-control {
+      background: #fbfbf8 !important;
+      border-color: #dfe2da !important;
+    }
+
+    main input:not([type="radio"]), main textarea {
+      background: #fbfbf8 !important;
+      border-color: #dfe2da !important;
+    }
+
+    main input:not([type="radio"]):focus, main textarea:focus {
+      border-color: var(--forest) !important;
+      --tw-ring-color: rgb(36 75 60 / 16%) !important;
+    }
+
+    main h2 { color: var(--ink) !important; }
+    main section > div:first-child > span { color: var(--forest) !important; background: #edf1eb !important; }
+
+    #refreshStudentsBtn:hover {
+      border-color: #b9c6bd;
+      color: var(--forest);
+    }
+
+    .field-control:focus {
+      border-color: var(--forest) !important;
+      --tw-ring-color: rgb(36 75 60 / 16%) !important;
+    }
+
+    .primary-action {
+      background: var(--forest) !important;
+      box-shadow: 0 7px 16px rgb(36 75 60 / 16%) !important;
+    }
+
+    .primary-action:hover {
+      background: #193a2d !important;
+    }
+
+    .table-head {
+      background: #f6f6f1 !important;
+      color: #647169 !important;
+    }
+
+    @media (max-width: 900px) {
+      .page-content { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 
 <body
-  class="bg-gradient-to-br from-slate-50 via-indigo-50/40 to-slate-100 text-slate-800 min-h-screen py-10 px-4 sm:px-6">
+  class="min-h-screen py-8 px-4 sm:px-6 lg:py-12">
 
-  <div class="max-w-2xl mx-auto">
+  <div class="max-w-7xl mx-auto">
     <!-- Header Banner -->
-    <header class="bg-white rounded-3xl shadow-xl shadow-indigo-100/50 border border-slate-100 overflow-hidden mb-8">
-      <div class="bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 px-6 sm:px-8 py-7 text-white relative">
+    <header class="page-header rounded-3xl border overflow-hidden mb-6">
+      <div class="px-6 sm:px-8 py-7 text-white relative">
         <div class="flex items-center gap-4">
           <div
-            class="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-2xl shadow-inner text-white shrink-0">
+            class="brand-mark w-14 h-14 rounded-2xl border flex items-center justify-center text-2xl shrink-0">
             <i class="fa-solid fa-graduation-cap"></i>
           </div>
           <div>
             <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Student Registration</h1>
-            <p class="text-indigo-100 text-xs sm:text-sm mt-0.5">Please provide your personal and contact details.</p>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">Student records · Registration and directory</p>
           </div>
         </div>
       </div>
     </header>
 
+    <div class="page-content">
     <!-- Registration Form -->
-    <main class="bg-white rounded-3xl shadow-xl shadow-indigo-100/50 border border-slate-100 p-6 sm:p-8">
+    <main class="surface bg-white border p-6 sm:p-8">
       <form id="studentRegistrationForm" novalidate class="space-y-8">
 
         <!-- 1. Personal Information -->
@@ -225,7 +321,7 @@
             Reset
           </button>
           <button type="submit" id="submitBtn"
-            class="w-full sm:w-auto px-7 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white font-semibold text-sm shadow-lg shadow-brand-500/25 transition flex items-center justify-center gap-2">
+            class="primary-action w-full sm:w-auto px-7 py-2.5 rounded-xl text-white font-semibold text-sm transition flex items-center justify-center gap-2">
             <i class="fa-solid fa-paper-plane text-xs"></i>
             Submit
           </button>
@@ -233,6 +329,38 @@
 
       </form>
     </main>
+
+    <section aria-labelledby="students-heading"
+      class="surface bg-white border overflow-hidden">
+      <div class="px-6 sm:px-8 py-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 id="students-heading" class="text-lg font-extrabold text-slate-900">Registered Students</h2>
+          <p id="studentsStatus" class="text-sm text-slate-500 mt-1" aria-live="polite">Loading students...</p>
+        </div>
+        <button type="button" id="refreshStudentsBtn"
+          class="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-sm transition">
+          <i class="fa-solid fa-rotate mr-2" aria-hidden="true"></i>Refresh
+        </button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-slate-100 text-left text-sm">
+          <thead class="table-head text-xs uppercase tracking-wider">
+            <tr>
+              <th scope="col" class="px-5 py-3">Name</th>
+              <th scope="col" class="px-5 py-3">Date of birth</th>
+              <th scope="col" class="px-5 py-3">Gender</th>
+              <th scope="col" class="px-5 py-3">Email</th>
+              <th scope="col" class="px-5 py-3">Phone</th>
+              <th scope="col" class="px-5 py-3">Address</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTableBody" class="divide-y divide-slate-100 text-slate-700">
+            <tr><td colspan="6" class="px-5 py-8 text-center text-slate-500">Loading students...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    </div>
   </div>
 
   <!-- Success Notification Modal -->
@@ -265,6 +393,52 @@
       const successModal = document.getElementById('successModal');
       const modalSummary = document.getElementById('modalSummary');
       const closeModalBtn = document.getElementById('closeModalBtn');
+      const studentsTableBody = document.getElementById('studentsTableBody');
+      const studentsStatus = document.getElementById('studentsStatus');
+
+      async function loadStudents() {
+        studentsStatus.textContent = 'Loading students...';
+        try {
+          const response = await fetch('http://localhost:3000/api/getUnvi');
+          const result = await response.json();
+          if (!response.ok || !Array.isArray(result.data)) {
+            throw new Error(result.message || 'Could not load students.');
+          }
+
+          studentsTableBody.replaceChildren();
+          studentsStatus.textContent = `${result.data.length} student${result.data.length === 1 ? '' : 's'}`;
+
+          if (result.data.length === 0) {
+            const row = studentsTableBody.insertRow();
+            const cell = row.insertCell();
+            cell.colSpan = 6;
+            cell.className = 'px-5 py-8 text-center text-slate-500';
+            cell.textContent = 'No students registered yet.';
+            return;
+          }
+
+          result.data.forEach(student => {
+            const row = studentsTableBody.insertRow();
+            [student.fullName, student.dateOfBirth, student.gender, student.email, student.phone, student.address]
+              .forEach(value => {
+                const cell = row.insertCell();
+                cell.className = 'px-5 py-4 whitespace-nowrap';
+                cell.textContent = value ?? '';
+              });
+          });
+        } catch (error) {
+          studentsTableBody.replaceChildren();
+          const row = studentsTableBody.insertRow();
+          const cell = row.insertCell();
+          cell.colSpan = 6;
+          cell.className = 'px-5 py-8 text-center text-rose-600';
+          cell.textContent = 'Could not load students. Check that the backend and database are running.';
+          studentsStatus.textContent = error.message || 'Failed to load students';
+        }
+      }
+
+      document.getElementById('refreshStudentsBtn').addEventListener('click', loadStudents);
+      loadStudents();
 
       // Clear errors on input
       form.querySelectorAll('input, textarea').forEach(element => {
@@ -367,6 +541,7 @@
             });
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || 'Registration failed.');
+            await loadStudents();
 
           // Console output
           console.group('🎓 Student Registration Data');

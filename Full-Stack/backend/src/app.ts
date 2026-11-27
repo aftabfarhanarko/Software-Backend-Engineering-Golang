@@ -1,58 +1,92 @@
 import cors from "cors";
 import express, { Request, Response } from "express";
+import { connectToPostgres } from "./utils/database.js";
+import {
+  findStudentByEmail,
+  getStudents,
+  insertStudent,
+  type Student,
+} from "./utils/studentQueries.js";
 
-type Student = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  dateOfBirth: string;
-  gender: "Male" | "Female" | "Other";
-  email: string;
-  phone: string;
-  address: string;
-};
 
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Student data
-const students: Student[] = [];
 
-// GET - All Students
-app.get("/api/students", (req: Request, res: Response) => {
-  res.json({
-    count: students.length,
-    students,
+
+const successResponse = (
+  res: Response,
+  statusCode: number,
+  message: string,
+  data?: unknown,
+) => {
+  return res.status(statusCode).json({
+    success: true,
+    message,
+    data,
   });
-});
+};
 
-// GET - Student by ID
-app.get("/api/students/:id", (req: Request, res: Response) => {
-  const student = students.find((item) => item.id === req.params.id);
+const errorResponse = (res: Response, statusCode: number, message: string) => {
+  return res.status(statusCode).json({
+    success: false,
+    message,
+  });
+};
 
-  if (!student) {
-    return res.status(404).json({
-      message: "Student not found",
-    });
+app.get("/api/getUnvi", async (_req: Request, res: Response) => {
+  try {
+    const students = await getStudents();
+    return successResponse(
+      res,
+      200,
+      "Students retrieved successfully",
+      students,
+    );
+  } catch (error) {
+    console.error("Failed to retrieve students:", error);
+    return errorResponse(res, 500, "Failed to retrieve students");
   }
-
-  res.json(student);
 });
 
-// POST - Create Student
-app.post("/api/students", (req: Request, res: Response) => {
+app.post("/api/students", async (req: Request, res: Response) => {
   const { firstName, lastName, dateOfBirth, gender, email, phone, address } =
     req.body;
 
-  console.log(req.body);
+  // Input Validation
 
-  // Create new student
-  const student: Student = {
+  if (
+    !firstName ||
+    !lastName ||
+    !dateOfBirth ||
+    !gender ||
+    !email ||
+    !phone ||
+    !address
+  ) {
+    return errorResponse(res, 400, "All fields are required");
+  }
+
+  // Validate Gender
+
+  if (!["Male", "Female", "Other"].includes(gender)) {
+    return errorResponse(res, 400, "Invalid gender value");
+  }
+
+  // Check Duplicate Email
+
+  const existingStudent = await findStudentByEmail(email);
+
+  if (existingStudent) {
+    return errorResponse(res, 409, "Email already exists");
+  }
+
+  // Create Student
+
+  const newStudent: Student = {
     id: Date.now().toString(),
     firstName,
     lastName,
@@ -64,16 +98,32 @@ app.post("/api/students", (req: Request, res: Response) => {
     address,
   };
 
-  // Save student Data in Database
-  students.push(student);
+  // Save student and return the row written by PostgreSQL.
+  const savedStudent = await insertStudent(newStudent);
 
-  res.status(201).json({
-    message: "Student created successfully",
-    student,
-  });
+  return successResponse(
+    res,
+    201,
+    "Student created successfully",
+    savedStudent,
+  );
 });
 
-// Start Server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+
+
+async function startServer(): Promise<void> {
+  try {
+    await connectToPostgres();
+
+    app.listen(PORT, () => {
+      console.log("\x1b[36m%s\x1b[0m", "🚀 Student API Server");
+      console.log("\x1b[32m%s\x1b[0m", `✓ Server: http://localhost:${PORT}`);
+      console.log("\x1b[32m%s\x1b[0m", "✓ Status: Running");
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error);
+    process.exit(1);
+  }
+}
+
+void startServer();
