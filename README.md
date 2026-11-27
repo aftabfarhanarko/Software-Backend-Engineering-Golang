@@ -1,505 +1,928 @@
-# 🚀 Backend Software Development & Systems Engineering
+# Backend Engineering Learning Repository
 
-[![Go Version](https://img.shields.io/badge/Go-1.22+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B%20%7C%2020%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Express](https://img.shields.io/badge/Express-5.x-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![Architecture](https://img.shields.io/badge/Architecture-Clean%20%2F%20Modular%20MVC-brightgreen?style=for-the-badge)](#-system-architecture)
-[![Concurrency](https://img.shields.io/badge/Concurrency-Thread--Safe%20Mutex-orange?style=for-the-badge)](#-module-1-pos-point-of-sale-backend-system-golang)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](#-author--license)
+[![Node.js](https://img.shields.io/badge/Node.js-Backend-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-5.x-000000?logo=express&logoColor=white)](https://expressjs.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Relational_DB-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![NestJS](https://img.shields.io/badge/NestJS-Framework-E0234E?logo=nestjs&logoColor=white)](https://nestjs.com/)
+[![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![Go](https://img.shields.io/badge/Go-Standard_Library-00ADD8?logo=go&logoColor=white)](https://go.dev/)
 
-A comprehensive, production-grade backend engineering repository and monorepo showcasing modern **RESTful API architectures**, **thread-safe concurrent systems**, **real-time observability telemetry**, **POS micro-systems**, **secure session management**, and **cross-language data modeling** across **Go (Golang)**, **Node.js / Express 5**, and **C++**.
+## Table of Contents
 
----
+- [Introduction](#introduction)
+- [About This Repository](#about-this-repository)
+- [Learning Objectives](#learning-objectives)
+- [Technologies and Tools](#technologies-and-tools)
+- [Complete Backend Engineering Roadmap](#complete-backend-engineering-roadmap)
+- [Module-wise Learning Progress](#module-wise-learning-progress)
+- [Practical Implementations](#practical-implementations)
+- [Project Folder Structure](#project-folder-structure)
+- [Key Concepts and Technical Knowledge](#key-concepts-and-technical-knowledge)
+- [API Development Practice](#api-development-practice)
+- [Database Learning](#database-learning)
+- [Authentication and Security](#authentication-and-security)
+- [Code Examples from This Repository](#code-examples-from-this-repository)
+- [What I Have Learned](#what-i-have-learned)
+- [Currently Learning](#currently-learning)
+- [Future Learning Roadmap](#future-learning-roadmap)
+- [How to Run This Project](#how-to-run-this-project)
+- [Installation and Setup](#installation-and-setup)
+- [Author Information](#author-information)
 
-## 📑 Table of Contents
+## Introduction
 
-- [🌟 Monorepo Overview](#-monorepo-overview)
-- [🏗️ System Architecture](#️-system-architecture)
-- [📂 Repository Map & Project Structure](#-repository-map--project-structure)
-- [📦 Core Modules Deep-Dive](#-core-modules-deep-dive)
-  - [1. 🛒 POS (Point of Sale) Backend System (`pos-backend/`)](#1--pos-point-of-sale-backend-system-pos-backend)
-  - [2. 🛡️ Enterprise Secure API & Live Studio (`API-Part-2/`)](#2-️-enterprise-secure-api--live-studio-api-part-2)
-  - [3. ⚡ Real-Time System & PC Observability (`ProcessinPC/`)](#3--real-time-system--pc-observability-processinpc)
-  - [4. 📊 User-Agent Analytics & Monitoring (`Agent-Analytics/`)](#4--user-agent-analytics--monitoring-agent-analytics)
-  - [5. 🍪 Authentication & Session Architecture (`Cookies_and_Session/`)](#5--authentication--session-architecture-cookies_and_session)
-  - [6. 🏛️ Cross-Language Data Modeling & OOP (`Data Modeling Part One/`)](#6-️-cross-language-data-modeling--oop-data-modeling-part-one)
-  - [7. 🧮 High-Performance Data Pipelines (`Problem-Practice/`)](#7--high-performance-data-pipelines-problem-practice)
-  - [8. 🐹 Standard Library Concurrent REST API (`main.go`)](#8--standard-library-concurrent-rest-api-maingo)
-  - [9. 🌐 Modular Routing & Assignments (`part-1-api-routing/`, `AS-1/`)](#9--modular-routing--assignments-part-1-api-routing-as-1)
-- [🚀 Quick Start & Installation](#-quick-start--installation)
-- [📡 Master API Endpoints Summary](#-master-api-endpoints-summary)
-- [🛡️ Production Best Practices & Security Standards](#️-production-best-practices--security-standards)
-- [👨‍💻 Author & License](#-author--license)
+This repository is a practical backend engineering learning workspace. It combines focused exercises with complete sample applications written in JavaScript, TypeScript, Node.js, Express.js, Go, C++, PostgreSQL, and NestJS.
 
----
+The work is organized as separate projects and practice folders. Each project can have its own dependencies, entry point, environment variables, database configuration, and run command. The repository is therefore a monorepo-style learning collection rather than one single application.
 
-## 🌟 Monorepo Overview
+## About This Repository
 
-Modern backend systems demand ultra-low latency, thread safety, predictable resource allocation, and robust defense-in-depth security. This repository serves as a hands-on engineering blueprint covering:
+This repository demonstrates backend learning through implementation instead of isolated theory. The projects include REST APIs, middleware, route and controller separation, JSON and PostgreSQL persistence, password hashing, JWT and cookie authentication, sessions, rate limiting, audit logs, TypeScript OOP, Go HTTP services, and a PostgreSQL-backed NestJS application.
 
-1. **High-Performance Go Systems:**
-   - Production POS backend with inventory tracking, barcode lookup, and atomic checkout transactions.
-   - Clean architecture, zero external framework dependencies, and standard library routing (`net/http` ServeMux enhancements in Go 1.22+).
-   - Thread-safe in-memory databases with `sync.RWMutex` preventing race conditions.
-2. **Enterprise Node.js / Express 5 Applications:**
-   - Layered Controller-Service-Repository MVC architecture with Joi schema validation.
-   - Interactive visual analytics and API studio (`/dashboard`) for real-time monitoring and testing.
-   - Defense-in-depth: dynamic IP rate limiting, bot & threat filtering (`sqlmap`, `nmap`, automated scrapers), and rolling audit loggers.
-3. **Observability & Real-Time Telemetry:**
-   - Lightweight GNOME-style system monitor with native Canvas 2D time-series visualization.
-   - Microsecond delta CPU rate calculations and granular V8 heap memory telemetry (RSS, Heap, External).
-   - Client fingerprinting and automated device/browser analytics with `ua-parser-js` and CSV exports.
-4. **State & Data Modeling:**
-   - Stateful session authentication with `express-session` and hardened HTTP cookie policies (`httpOnly`, `secure`, `sameSite`).
-   - Comparative OOP and data modeling implementations across C++, Go, and JavaScript.
-   - High-throughput functional data transformation pipelines (`map`, `filter`, `reduce`, `slice`).
+Important status principles used in this README:
 
----
+- **Verified implementation** means the behavior exists in source code.
+- **A folder name or dependency is not treated as proof** unless the corresponding code uses it.
+- **Practice code and production-grade code are not presented as equally mature.**
+- Several folders contain experiments, assignments, incomplete features, or alternative implementations.
 
-## 🏗️ System Architecture
+The repository also contains nested projects and nested Git repositories. Each project should be built and run from its own directory.
 
-The repository enforces **Clean Architecture** and **Layered Separation of Concerns**, ensuring transport protocols, business rules, and persistence layers remain decoupled and independently testable.
+## Learning Objectives
 
-```mermaid
-flowchart TD
-    subgraph Clients["Clients & Upstream"]
-        Web["Web Browser / SPA"]
-        Mobile["Mobile / POS Terminal"]
-        Scanner["Barcode Scanner"]
-        Bot["Automated Scanners / Bots"]
-    end
+- Understand the HTTP request-response lifecycle.
+- Build and organize REST APIs with Node.js and Express.js.
+- Separate routing, controllers, services, middleware, and persistence concerns.
+- Apply JavaScript asynchronous programming and non-blocking I/O.
+- Model relational data with PostgreSQL and constraints.
+- Use parameterized SQL and an ORM safely.
+- Implement cookies, sessions, password hashing, JWT access tokens, and refresh tokens.
+- Apply TypeScript types and object-oriented programming principles.
+- Add validation, centralized error handling, logging, and rate limiting.
+- Progress from learning exercises to complete, testable backend services.
 
-    subgraph SecurityLayer["Security & Gateway Interceptors"]
-        CORS["CORS & Security Headers"]
-        RateLimit["Rate Limiter (express-rate-limit)"]
-        BotShield["Bot Shield (User-Agent Regex Blocker)"]
-        AuditLog["Audit Logger (Rolling Buffer)"]
-    end
+## Technologies and Tools
 
-    subgraph RoutingLayer["Transport & Routing Engine"]
-        ExpressRouter["Express 5 Router / Middlewares"]
-        GoMux["Go 1.22+ Enhanced ServeMux"]
-    end
+| Technology | How it is used in the repository |
+|---|---|
+| JavaScript | Express servers, in-memory models, middleware, authentication, and array exercises |
+| Node.js | HTTP servers, Express applications, file I/O, environment variables, and process runtime |
+| Express.js 5 | REST routing, static assets, middleware chains, and HTTP API handlers |
+| TypeScript | OOP exercises, PostgreSQL APIs, and the NestJS application |
+| PostgreSQL | Student data and VocabMaster relational schema |
+| `pg` | PostgreSQL connection pools and parameterized queries |
+| Prisma | VocabMaster models, migrations and database access |
+| NestJS | Modular backend application with controllers, services, guards, validation and Swagger |
+| Redis/ioredis | Redis module and throttling storage in VocabMaster |
+| JWT / bcrypt | Authentication, password hashing, access tokens and refresh tokens |
+| Cookies / Sessions | `cookie-parser` and `express-session` implementations |
+| Joi | Request validation in API assignments |
+| Go | Native HTTP REST server and POS backend |
+| C++ | OOP and data structures practice |
+| MongoDB / MongoDB package | Present in `AS-1` dependencies; verified database code should be reviewed before relying on it |
+| Jest / Supertest | VocabMaster test dependencies and specifications |
+| Node test runner | HTTP integration tests in `To-Do Manager-AS/tests/app.test.js` |
+| Docker / Docker Compose | VocabMaster container configuration |
 
-    subgraph BusinessLayer["Business Logic & Domain Services"]
-        POSService["POS Checkout & Stock Engine"]
-        UserService["User Management & Validation"]
-        AnalyticsService["Telemetry & Metric Collectors"]
-        SessionService["Session & Cookie Engine"]
-    end
+## Complete Backend Engineering Roadmap
 
-    subgraph StorageLayer["Data & Persistence Layer"]
-        GoStore["Thread-Safe In-Memory Store (sync.RWMutex)"]
-        Mongo["MongoDB / Mongoose Collections"]
-        JSONStore["Atomic JSON File Storage"]
-    end
+The roadmap below is evidence-based. A topic is marked complete only when source code or a documented implementation demonstrates it.
 
-    Clients --> SecurityLayer
-    SecurityLayer --> RoutingLayer
-    RoutingLayer --> BusinessLayer
-    BusinessLayer --> StorageLayer
-```
+### Status Legend
 
----
+- ✅ **Completed** — implemented and verified.
+- 🟡 **In Progress** — implemented partially, as an exercise, or without full production hardening.
+- ⬜ **Not Started** — not implemented or insufficient evidence was found.
 
-## 📂 Repository Map & Project Structure
+## Module-wise Learning Progress
 
-```plaintext
+### Module 1: Introduction to Web Servers
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Introduction to Web Servers | ✅ | [server.js](/home/aftab-farhan/projects/Backend Software Development/server.js), [pos-backend/main.go](/home/aftab-farhan/projects/Backend Software Development/pos-backend/main.go) |
+| How Web Servers Work | ✅ | Native Node HTTP server and Express listener implementations |
+| Client-Server Architecture | ✅ | Browser/static frontend with Express and Node API handlers |
+| HTTP Request and Response | ✅ | Request parsing, response JSON, HTML and status methods |
+| HTTP Methods and Status Codes | ✅ | GET, POST, PUT, DELETE and explicit 2xx, 4xx, 5xx responses |
+
+### Module 2: Introduction to Backend Systems
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Introduction to Backend Development | ✅ | Multiple REST API and service implementations |
+| Backend Architecture | ✅ | Controllers, services, routes, middleware and storage layers |
+| Frontend vs Backend | ✅ | Frontend and API folders in `Full-Stack`, `Task`, `VocabMaster`, and `ProcessinPC` |
+| Request-Response Lifecycle | ✅ | Middleware → route/controller → response patterns |
+| Backend Responsibilities | ✅ | Validation, persistence, authentication, logging, and error handling |
+
+### Module 3: JavaScript with Node.js and Express.js
+
+| Topic | Status | Evidence |
+|---|---|---|
+| JavaScript for Backend Development | ✅ | JavaScript server and application entry points |
+| Node.js Fundamentals | ✅ | CommonJS modules, built-in HTTP/FS modules and Node process APIs |
+| Node.js Runtime | ✅ | Direct `node` entry points and Nodemon development scripts |
+| Express.js Fundamentals | ✅ | `express()` applications and middleware |
+| Routing and Controllers | ✅ | Separate `router/` and `controllers/` directories in multiple projects |
+
+### Module 4: Async JavaScript Inside Node.js
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Synchronous vs Asynchronous JavaScript | ✅ | Synchronous validation/storage examples and async database handlers |
+| Callbacks | ✅ | [app.js](/home/aftab-farhan/projects/Backend Software Development/app.js) and Node callbacks |
+| Promises | ✅ | Promise-based HTTP tests and database operations |
+| Async/Await | ✅ | Async Express and NestJS service methods |
+| Event Loop | ⬜ | Used through Node APIs, but no dedicated implementation or documented study evidence |
+| Call Stack | ⬜ | No dedicated call-stack exercise |
+| Microtask and Callback Queues | ⬜ | No dedicated implementation or documented study evidence |
+| Non-blocking I/O | 🟡 | Async database and file operations are present; Node internals are not explicitly demonstrated |
+
+### Module 5: API Development Part One
+
+| Topic | Status | Evidence |
+|---|---|---|
+| REST API Fundamentals | ✅ | Resource-based routes and CRUD implementations |
+| HTTP Methods | ✅ | GET, POST, PUT, PATCH and DELETE usage |
+| Route Handling | ✅ | Express routers and Go `ServeMux`/handlers |
+| Request and Response | ✅ | `req.body`, `req.query`, parameters and `res.json()`/`send()` |
+| Query Parameters | ✅ | Product search, analytics and student/user routes |
+| Route Parameters | ✅ | `/tasks/:id`, `/api/todos/:id`, and Go path extraction |
+| Request Body | ✅ | `express.json()` and `express.urlencoded()` parsing |
+| HTTP Status Codes | ✅ | Success, validation, authentication, forbidden and server error responses |
+
+### Module 6: API Development Part Two
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Advanced API Development | 🟡 | Modular projects exist, but not every project has full pagination/versioning/transactions |
+| Middleware | ✅ | Authentication, logging, audit, rate limiting and CORS middleware |
+| Error Handling | ✅ | Central error middleware and NestJS exception filter |
+| Request Validation | ✅ | Joi, manual validation, NestJS `ValidationPipe` and DTOs |
+| Controller and Service Separation | ✅ | `API-Part-2`, To-Do Manager, NestJS and TypeScript projects |
+| API Structure | ✅ | Router/controller/service directories and module boundaries |
+| API Testing | 🟡 | Node test runner integration tests and NestJS Jest specs; no complete root test suite |
+
+### Module 7: Data Modeling Part One
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Database Fundamentals | ✅ | PostgreSQL schemas and Prisma models |
+| Data Modeling | ✅ | Student, user, product, todo and VocabMaster entities |
+| Entities and Attributes | ✅ | TypeScript types, SQL columns and Prisma models |
+| Relationships | ✅ | One-to-many and many-to-many relations in Prisma |
+| One-to-One Relationships | ⬜ | No explicit relational implementation found |
+| One-to-Many Relationships | ✅ | Users to progress, collections, notes and activity logs |
+| Many-to-Many Relationships | ✅ | Collections and words through `CollectionItem` |
+| ER Diagrams | ⬜ | Not found as repository documentation or source artifact |
+
+### Module 8: JavaScript Essentials for API Development
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Array Methods | ✅ | `map`, `filter`, `reduce`, `slice` exercises |
+| Objects | ✅ | Request payloads, models and JSON data |
+| Destructuring | ✅ | Imports and object/array data extraction |
+| Spread and Rest Operators | 🟡 | Used in JavaScript/TypeScript code; no dedicated comprehensive examples |
+| Map and Set | 🟡 | `Map` and `Set` concepts appear in exercises but dedicated backend usage is limited |
+| Higher-Order Functions | ✅ | Array callbacks and middleware functions |
+| Modules | ✅ | CommonJS `require/module.exports` and ES modules |
+| Error Handling | ✅ | `try/catch`, async rejection handling and centralized middleware |
+
+### Module 9: Process
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Node.js Process | ✅ | `process.env`, `process.cwd()`, `process.uptime()` and process exit usage |
+| Environment Variables | ✅ | `dotenv`, `.env.example` files and `process.env` |
+| `process.env` | ✅ | Ports, database credentials, secrets and application configuration |
+| Process Arguments | 🟡 | npm scripts pass arguments, but no dedicated `process.argv` CLI implementation |
+| Runtime Information | 🟡 | `process.uptime()` and server logs; no formal metrics or system process dashboard |
+
+### Module 10: Cookies and Sessions
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Cookies | ✅ | `cookie-parser`, `res.cookie()`, `clearCookie()` |
+| HTTP Cookies | ✅ | Authorization and session cookies |
+| Cookie Properties | 🟡 | `httpOnly`, `sameSite`, `secure` and `maxAge` are used in places |
+| Sessions | ✅ | `express-session` implementations |
+| Session Management | ✅ | Login, logout and session destruction |
+| Cookie-Based Authentication | ✅ | Auth cookie and session cookie examples |
+| Session-Based Authentication | ✅ | `req.session.userId` middleware checks |
+
+### Module 11: JWT
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Authentication vs Authorization | 🟡 | Authentication is implemented; role-based authorization is limited |
+| JSON Web Tokens | ✅ | `jsonwebtoken` and VocabMaster native JWTs |
+| JWT Structure | 🟡 | Signed payloads are used, but no dedicated teaching document |
+| Access Tokens | ✅ | Short-lived access token generation and verification |
+| Refresh Tokens | ✅ | VocabMaster refresh token generation and stored hash design |
+| Token Verification | ✅ | Bearer/cookie verification and passport-style guard |
+| Protected Routes | ✅ | Auth middleware and NestJS guards |
+| JWT Security | 🟡 | HTTP-only cookies and token verification exist; fallback secrets and demo paths need production hardening |
+
+### Module 12: TypeScript with OOP
+
+| Topic | Status | Evidence |
+|---|---|---|
+| TypeScript Fundamentals | ✅ | Types, interfaces, DTOs and generic database helpers |
+| Classes and Objects | ✅ | [OOP/src/classType.ts](/home/aftab-farhan/projects/Backend Software Development/OOP/src/classType.ts) |
+| Constructors | ✅ | Product constructor and NestJS dependency injection classes |
+| Encapsulation | ✅ | Private fields and encapsulated C++/TypeScript classes |
+| Access Modifiers | ✅ | `private` fields and public methods |
+| Inheritance | 🟡 | `extends` examples exist in OOP exercises |
+| Abstraction | 🟡 | Interfaces and abstracted services exist conceptually, but no dedicated abstract-class study |
+| Static Members | ⬜ | No clear static member implementation found |
+| Getters and Setters | ⬜ | No clear getters/setters implementation found |
+
+### Module 13: Interface and Polymorphism
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Interfaces | ✅ | TypeScript interfaces and contract types |
+| Interface Implementation | ✅ | Service/controller and class contracts in several projects |
+| Polymorphism | ✅ | TypeScript animal polymorphism example |
+| Method Overriding | 🟡 | TypeScript polymorphic `spek()` implementations demonstrate overriding |
+| Method Overloading | ⬜ | No explicit overload implementation found |
+| Abstraction with Interfaces | 🟡 | Interfaces are used in TypeScript and NestJS, but formal abstract interface modeling is limited |
+
+### Module 14: Introduction to Database - PostgreSQL
+
+| Topic | Status | Evidence |
+|---|---|---|
+| Relational Database Fundamentals | ✅ | SQL tables and Prisma relational models |
+| PostgreSQL | ✅ | `pg` pool and Prisma PostgreSQL provider |
+| Tables and Records | ✅ | Student and VocabMaster tables |
+| Primary Keys | ✅ | SQL `PRIMARY KEY`, UUID and serial keys |
+| Foreign Keys | ✅ | Prisma relation fields and SQL relational design |
+| Constraints | ✅ | `NOT NULL`, `UNIQUE`, enum and foreign-key constraints |
+| SQL Queries | ✅ | Parameterized SELECT and INSERT statements |
+| Joins | ⬜ | No explicit handwritten JOIN query or join query exercise found |
+| Indexes | ✅ | Prisma `@@index` and SQL `UNIQUE` indexes |
+| Database Relationships | ✅ | Prisma one-to-many and many-to-many models |
+| Database Normalization | 🟡 | Relational separation is used, but no normalization exercise or explanation |
+| Transactions | ⬜ | No explicit transaction API or isolation-level implementation found |
+
+## Practical Implementations
+
+### VocabMaster
+
+VocabMaster is the most complete full-stack application in the repository.
+
+- NestJS backend with modular feature domains.
+- Next.js frontend PWA.
+- Prisma and PostgreSQL models.
+- Supabase and native JWT authentication support.
+- Access and refresh tokens stored in HTTP-only cookies.
+- Redis-backed throttling storage.
+- Swagger at `/api/docs`.
+- Global validation, exception filtering, transformation interceptors and audit logging.
+- Jest specifications and Docker configuration.
+
+Relevant entry points:
+
+- [VocabMaster/backend/src/main.ts](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/src/main.ts)
+- [VocabMaster/backend/src/app.module.ts](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/src/app.module.ts)
+- [VocabMaster/backend/prisma/schema.prisma](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/prisma/schema.prisma)
+
+### To-Do Manager
+
+This project demonstrates a complete Express application using in-memory JSON-backed models.
+
+- Session and JWT authentication.
+- bcrypt and legacy scrypt password verification.
+- HTTP-only auth cookies.
+- Protected Bearer/cookie/session routes.
+- Controller, route, middleware and model separation.
+- Request/audit/log middleware.
+- Static frontend.
+- Node test runner integration suite.
+
+Relevant entry points:
+
+- [To-Do Manager-AS/app.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/app.js)
+- [To-Do Manager-AS/middleware/auth.middleware.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/middleware/auth.middleware.js)
+- [To-Do Manager-AS/utils/auth.utils.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/utils/auth.utils.js)
+- [To-Do Manager-AS/tests/app.test.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/tests/app.test.js)
+
+### Full-Stack PostgreSQL Student API
+
+This TypeScript application connects Express to PostgreSQL using `pg`.
+
+- PostgreSQL connection pool.
+- Parameterized queries.
+- Duplicate-email lookup.
+- Student CRUD/list endpoints.
+- Manual request validation.
+- Typed success and error responses.
+
+Relevant files:
+
+- [Full-Stack/backend/src/app.ts](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/src/app.ts)
+- [Full-Stack/backend/src/utils/database.ts](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/src/utils/database.ts)
+- [Full-Stack/backend/src/utils/studentQueries.ts](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/src/utils/studentQueries.ts)
+- [Full-Stack/backend/database/schema.sql](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/database/schema.sql)
+
+### POS Backend
+
+The Go POS backend uses the standard library and an in-memory, mutex-protected store.
+
+- Product, category, customer and order resources.
+- Checkout and stock deduction.
+- Product barcode lookup.
+- Sales reports.
+- CORS and request logging middleware.
+- Unit tests for store behavior.
+
+Relevant files:
+
+- [pos-backend/main.go](/home/aftab-farhan/projects/Backend Software Development/pos-backend/main.go)
+- [pos-backend/store/store.go](/home/aftab-farhan/projects/Backend Software Development/pos-backend/store/store.go)
+- [pos-backend/store/store_test.go](/home/aftab-farhan/projects/Backend Software Development/pos-backend/store/store_test.go)
+
+### API Security and Analytics
+
+The API and monitoring projects demonstrate:
+
+- Express rate limiting.
+- Audit and access logs.
+- User-agent collection and scanner/bot blocking.
+- Static dashboard endpoints.
+- API tokens supplied through query parameters, bearer headers or API-key headers.
+- CORS configuration.
+
+Representative projects include `API-Part-2`, `Agent-Analytics`, `Pricktise-Server`, `ProcessinPC`, and `To-Do Manager-AS`.
+
+### Process, OOP and Data Practice
+
+Additional folders demonstrate:
+
+- Node.js process and environment usage.
+- JavaScript array transformations and pagination.
+- C++ and Go OOP/data modeling.
+- TypeScript classes, private fields and polymorphism.
+- DSA exercises and linked-list implementations.
+- Docker and deployment examples in VocabMaster.
+
+## Project Folder Structure
+
+Dependencies, build outputs, nested `.git` directories and generated frontend caches are omitted. The tree reflects the repository as inspected.
+
+```text
 Backend Software Development/
-├── pos-backend/                 # 🛒 Full Go Point-of-Sale (POS) backend system
-│   ├── handlers/                # HTTP request controllers (Product, Category, Order, Customer, Report)
-│   ├── middleware/              # CORS and request logging middleware
-│   ├── models/                  # Domain entities (Product, Category, Customer, Order, Checkout)
-│   ├── store/                   # Thread-safe in-memory database with sync.RWMutex & unit tests
-│   ├── go.mod                   # Go 1.22 module definition
-│   ├── main.go                  # Server bootstrap & router configuration
-│   └── README.md                # POS module documentation
-│
-├── API-Part-2/                  # 🛡️ Enterprise Secure User Management & Interactive Studio
-│   ├── controllers/             # User and system controller handlers
-│   ├── services/                # Business logic and user data access
-│   ├── middleware/              # Rate limiting, bot regex blocking, rolling audit logger
-│   ├── public/                  # Built-in visual /dashboard and API studio assets
-│   ├── router/                  # Modular express route definitions
-│   ├── app.js                   # Application entrypoint (Express 5)
-│   ├── package.json             # Express, express-rate-limit, cors, dotenv
-│   └── README.md                # Detailed studio and API documentation
-│
-├── ProcessinPC/                 # ⚡ Time-Series Real-Time System & PC Monitor
-│   ├── agent/                   # Background system telemetry sampling agent
-│   ├── backend/                 # Telemetry persistence & aggregation APIs
-│   ├── frontend/ & public/      # Zero-dependency interactive HTML5/Canvas 2D dashboard
-│   ├── docs/                    # Architectural specs and metric documentation
-│   ├── app.js                   # Observability server (Express 5 + systeminformation)
-│   ├── test-full-system.js      # End-to-end telemetry pipeline test suite
-│   └── README.md                # Time-series telemetry documentation
-│
-├── Agent-Analytics/             # 📊 User-Agent Analytics & Client Monitoring Service
-│   ├── controllers/             # Analytics, event, and user controllers
-│   ├── middleware/              # ua-parser-js inspection & automated CLI blocking
-│   ├── router/                  # Analytics and CSV export endpoints
-│   ├── views/                   # Analytics dashboard UI
-│   ├── app.js                   # Server entrypoint
-│   └── README.md                # Analytics service documentation
-│
-├── Cookies_and_Session/         # 🍪 Stateful Cookie & Session Authentication
-│   ├── app.js                   # Express-session login, protected endpoints & logout
-│   ├── appv1.js                 # Session token lifecycle experiments
-│   ├── package.json             # express-session, cookie-parser
-│   └── README.md                # Cookie security flags and curl walkthrough
-│
-├── Data Modeling Part One/      # 🏛️ Cross-Language Data Modeling & OOP Architecture
-│   ├── dataModal.cpp            # C++: Foundational class modeling
-│   ├── Object.cpp               # C++: Multi-entity modeling (Student, Teacher, Product, Book)
-│   ├── encapsulation.cpp        # C++: Private encapsulation & BankAccount methods
-│   ├── go-oop/                  # Go: OOP via structs, pointer receivers, composition
-│   ├── JS/                      # JavaScript: REST API with JSON persistence & frontend UI
-│   └── README.md                # Comprehensive OOP & data modeling guide
-│
-├── Problem-Practice/            # 🧮 High-Performance Data Processing Pipelines
-│   ├── filter_out_only_even.js  # Conditional array filtration
-│   ├── Map_to_lighter.js        # DTO projection and payload compression
-│   ├── Chained_transformations.js # Composed filter-map-sort workflows
-│   ├── reduce.js                # Accumulator aggregations and inventory valuation
-│   ├── Pagination_with_slice.js # In-memory pagination and page slicing
-│   └── README.md                # Backend pipeline patterns & documentation
-│
-├── part-1-api-routing/          # 🛣️ Modular Route Segregation & Joi Validations
-│   ├── app.js                   # Express application wiring
-│   ├── user.js                  # User router with Joi validation schema
-│   ├── payment.js               # Payment transaction routing
-│   └── student.js               # Student management routes
-│
-├── AS-1/                        # 📝 Blog REST API (Assignment 1)
-│   ├── app.js                   # Express application bootstrap
-│   ├── blog.js                  # Blog CRUD route handlers
-│   └── db.js                    # MongoDB / Mongoose connection layer
-│
-├── Pricktise-Server/            # 🧪 Hardened Practice Server & Security Auditing
-│   ├── controllers/             # User controllers
-│   ├── middleware/              # Strict rate limit (2 req/15min) & audit hooks
-│   ├── app.js                   # Server entrypoint
-│   └── DEPLOYMENT.md            # Production deployment checklist
-│
-├── main.go                      # 🐹 Core Go In-Memory Thread-Safe Task REST API
-├── server.js                    # ⚡ Native Node.js HTTP server demo
-├── file.js                      # 📁 Asynchronous File System I/O operations
-├── app.js                       # 🔄 Core JavaScript callback & execution flows
-└── test.js                      # 🧪 Rapid prototyping & utility test script
+├── README.md
+├── app.js
+├── file.js
+├── main.go
+├── server.js
+├── test.js
+├── API/
+│   ├── package.json
+│   └── server.js
+├── API-Part-2/
+│   ├── app.js
+│   ├── package.json
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── public/
+│   ├── router/
+│   ├── services/
+│   └── utils/
+├── AS-1/
+│   ├── app.js
+│   ├── blog.js
+│   ├── db.js
+│   └── package.json
+├── Agent-Analytics/
+│   ├── app.js
+│   ├── controllers/
+│   ├── middleware/
+│   ├── router/
+│   ├── utils/
+│   └── views/
+├── Basick/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── src/
+├── Cookies_and_Session/
+│   ├── app.js
+│   ├── appv1.js
+│   ├── appv2.js
+│   ├── hash.js
+│   ├── jwt.js
+│   └── test.js
+├── Data Modeling Part One/
+│   ├── README.md
+│   ├── Object.cpp
+│   ├── dataModal.cpp
+│   ├── encapsulation.cpp
+│   ├── test.cpp
+│   ├── go-oop/
+│   └── JS/
+├── DSA/
+│   ├── README.md
+│   ├── LinkedList.cpp
+│   ├── structs_and_objects.cpp
+│   ├── task1.cpp
+│   ├── Comparative-Programming-all-Code/
+│   ├── Js-Core/
+│   ├── Linked-List/
+│   └── Thinking/
+├── Full-Stack/
+│   ├── backend/
+│   └── student-Fn/
+├── JWT/
+├── LS-13-Introduction-to-Database/
+│   ├── README.md
+│   └── rewr.ts
+├── OOP/
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── src/
+├── part-1-api-routing/
+│   ├── app.js
+│   ├── payment.js
+│   ├── student.js
+│   └── user.js
+├── pos-backend/
+│   ├── go.mod
+│   ├── main.go
+│   ├── handlers/
+│   ├── middleware/
+│   ├── models/
+│   └── store/
+├── Pricktise-Server/
+│   ├── app.js
+│   ├── controllers/
+│   ├── middleware/
+│   └── router/
+├── Problem-Practice/
+│   ├── README.md
+│   ├── array.js
+│   ├── reduce.js
+│   └── array transformation exercises
+├── ProcessinPC/
+│   ├── agent/
+│   ├── backend/
+│   ├── docs/
+│   ├── frontend/
+│   └── public/
+├── Task/
+│   ├── backend/
+│   └── frontend/
+├── Test Session Cooki/
+├── To-Do Manager-AS/
+│   ├── app.js
+│   ├── controllers/
+│   ├── data/
+│   ├── logs/
+│   ├── middleware/
+│   ├── models/
+│   ├── public/
+│   ├── router/
+│   ├── tests/
+│   └── utils/
+├── Typescripet OOP/
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── src/
+│   └── test/
+└── VocabMaster/
+    ├── backend/
+    ├── frontend/
+    ├── packages/
+    └── docker-compose.yml
 ```
 
----
+## Key Concepts and Technical Knowledge
 
-## 📦 Core Modules Deep-Dive
+### Middleware
 
-### 1. 🛒 POS (Point of Sale) Backend System (`pos-backend/`)
+Middleware functions execute between receiving a request and returning a response. They can validate credentials, parse bodies, log requests, apply rate limits or pass control to the next handler.
 
-A production-ready POS backend service written in **Go 1.22+** leveraging enhanced standard library routing, thread-safe memory state management, and real-time inventory deduction.
+Example locations:
 
-#### Key Architectural Highlights:
-- **Thread-Safe In-Memory Engine:** Employs `sync.RWMutex` to eliminate race conditions across concurrent POS terminal checkouts.
-- **Atomic Stock Deduction:** Automatically checks inventory availability, locks resources, deducts stock, and generates an invoice. If any item is out of stock, the transaction is rolled back with an informative error.
-- **Barcode Scanner Integration:** Instant $O(1)$ product retrieval by barcode for fast supermarket or retail checkout.
-- **Automated Low-Stock Alerts:** Automatically flags products whose stock falls below predefined thresholds (`min_stock`).
-- **Loyalty Program & Taxation:** Computes discounts, subtotal, tax amounts, cash change, and adds loyalty points to customer profiles.
-- **Order Voiding & Inventory Restoration:** Voiding an order automatically restores item stocks to the inventory.
-- **Sales Analytics Dashboard:** Computes daily revenue, total sales count, top products, and low-stock warnings.
+- [To-Do Manager-AS/app.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/app.js)
+- [API-Part-2/middleware/user.js](/home/aftab-farhan/projects/Backend Software Development/API-Part-2/middleware/user.js)
+- [VocabMaster/backend/src/main.ts](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/src/main.ts)
 
-#### Project Layout:
-```plaintext
-pos-backend/
-├── go.mod                     # Go 1.22 module
-├── main.go                    # Server bootstrap & Go 1.22 ServeMux routing
-├── models/models.go           # Product, Category, Customer, Order, Checkout structs
-├── store/store.go             # Thread-safe in-memory DB with sync.RWMutex
-├── store/store_test.go        # Automated unit tests for checkout & stock
-├── handlers/                  # HTTP controller handlers
-│   ├── product_handler.go     # Product CRUD & barcode lookup
-│   ├── category_handler.go    # Category CRUD
-│   ├── customer_handler.go    # Customer management & loyalty points
-│   ├── order_handler.go       # POS checkout, invoice lookup & voiding
-│   └── report_handler.go      # Real-time analytics dashboard
-└── middleware/middleware.go   # CORS & JSON response helpers
+### Controller and Service Separation
+
+The API projects place HTTP responsibilities in controllers and reusable application logic in services. Routers define endpoints and forward requests into those components.
+
+In `API-Part-2`, `router/user.js` mounts the user routes, `controllers/userControllers.js` handles responses, and `services/userservices.js` implements the user data behavior.
+
+### Centralized Error Handling
+
+To avoid repeated error response code, applications define not-found and error middleware. VocabMaster additionally uses a global NestJS exception filter and response transformation interceptor.
+
+### Parameterized PostgreSQL Queries
+
+The student API builds SQL with positional parameters such as `$1` rather than embedding request values directly:
+
+```sql
+SELECT email FROM students WHERE email = $1 LIMIT 1
 ```
 
-#### Running & Testing POS Backend:
+This is implemented in [Full-Stack/backend/src/utils/studentQueries.ts](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/src/utils/studentQueries.ts).
+
+### Password Hashing
+
+Passwords are hashed with bcrypt rather than stored in plain text. A few older or experimental projects retain legacy `scrypt` verification for data migration compatibility.
+
+### JWT and Protected Routes
+
+JWT middleware verifies a signed access token and loads the matching user. `To-Do Manager-AS` accepts a session, a bearer token or an auth cookie.
+
+### Session Cookies
+
+`express-session` stores session state and identifies the browser with a session cookie. The actual session data is held by the MemoryStore in the practice applications unless a persistent session store is added.
+
+### TypeScript OOP
+
+The OOP projects demonstrate private fields, constructors, methods, inheritance and polymorphism. TypeScript types and interfaces improve compile-time contract checking.
+
+## API Development Practice
+
+The repository contains:
+
+- Health/root endpoints.
+- CRUD-style resource endpoints.
+- Query parameter filtering.
+- Route parameter lookup.
+- JSON and URL-encoded request bodies.
+- Pagination and in-memory slicing exercises.
+- Bearer and API-key authentication patterns.
+- Session and JWT protection.
+- Global and route-level middleware.
+- Manual and DTO-based validation.
+- 404, 401, 403, 409, 422/400 and 500 response handling.
+
+API testing evidence exists in:
+
+- [To-Do Manager-AS/tests/app.test.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/tests/app.test.js)
+- [VocabMaster/backend/src/audit/audit.service.spec.ts](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/src/audit/audit.service.spec.ts)
+- [VocabMaster/backend/src/auth/auth.service.spec.ts](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/src/auth/auth.service.spec.ts)
+- [VocabMaster/backend/src/quiz/quiz.service.spec.ts](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/src/quiz/quiz.service.spec.ts)
+
+## Database Learning
+
+### PostgreSQL in the Student API
+
+The student project uses a `students` table with primary, unique and required-column concepts in [Full-Stack/backend/database/schema.sql](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/database/schema.sql).
+
+The application uses `pg.Pool` for connection reuse and parameterized SQL for writes and reads.
+
+### PostgreSQL in VocabMaster
+
+[VocabMaster/backend/prisma/schema.prisma](/home/aftab-farhan/projects/Backend Software Development/VocabMaster/backend/prisma/schema.prisma) defines:
+
+- User profiles and roles.
+- Vocabulary words, definitions and examples.
+- Spaced-repetition progress and review history.
+- Collections and collection items.
+- Notes and bookmarks.
+- Quiz sessions and daily activity.
+- Audit logs.
+- One-to-many and many-to-many relationships.
+- Unique constraints and indexes.
+
+### SQL and ORM Trade-off
+
+Raw SQL gives direct control over SQL statements and query planning. Prisma provides generated types, migration workflows and relation-aware database operations. This repository includes examples of both approaches.
+
+## Authentication and Security
+
+Verified security patterns include:
+
+- bcrypt password hashing.
+- JWT signing and verification.
+- Bearer, cookie and session authentication.
+- HTTP-only access/refresh cookies.
+- Refresh-token hashes stored in VocabMaster.
+- Native JWT and Supabase token verification.
+- CORS restrictions.
+- Global validation pipelines.
+- Rate limiting and Redis-backed throttling.
+- Audit logging.
+- Bot and security-scanner user-agent blocking.
+- Parameterized SQL to prevent direct string interpolation.
+
+Security limitations to address in later work:
+
+- Replace example or fallback secrets with required environment variables.
+- Enforce HTTPS and secure cookie flags for production deployments.
+- Add authorization policy/RBAC rather than relying mainly on authentication.
+- Rotate secrets and define refresh-token revocation.
+- Configure trusted proxy behavior and CORS carefully.
+- Review all `.env` files and remove committed credentials before public deployment.
+
+## Code Examples from This Repository
+
+### Express Middleware
+
+From [To-Do Manager-AS/app.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/app.js):
+
+```javascript
+app.use(requestLogger);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "todo_session_secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 },
+  })
+);
+```
+
+### JWT Generation and Verification
+
+From [To-Do Manager-AS/utils/auth.utils.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/utils/auth.utils.js):
+
+```javascript
+function generateToken(payload) {
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: "2h" });
+}
+
+function verifyToken(token) {
+  try {
+    return jwt.verify(token, JWT_SECRET);
+  } catch {
+    return null;
+  }
+}
+```
+
+### Protected Express Middleware
+
+From [To-Do Manager-AS/middleware/auth.middleware.js](/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS/middleware/auth.middleware.js):
+
+```javascript
+const decoded = verifyToken(token);
+const user = decoded?.id ? UserModel.findById(decoded.id) : null;
+
+if (!user) {
+  return res.status(401).json({
+    success: false,
+    message: "Invalid or expired token",
+  });
+}
+
+req.user = user;
+next();
+```
+
+### TypeScript Polymorphism
+
+From [OOP/src/index.ts](/home/aftab-farhan/projects/Backend Software Development/OOP/src/index.ts):
+
+```typescript
+class Dog extends Animal {
+  spek() {
+    console.log("Dog Spaking");
+  }
+}
+
+function taking(animal: Animal) {
+  animal.spek();
+}
+```
+
+### Go Thread-Safe In-Memory Store
+
+From [pos-backend/main.go](/home/aftab-farhan/projects/Backend Software Development/pos-backend/main.go):
+
+```go
+type TaskStore struct {
+	sync.Mutex
+	tasks  map[int]Task
+	nextID int
+}
+
+store.Lock()
+store.tasks[newTask.ID] = newTask
+store.Unlock()
+```
+
+### PostgreSQL Parameterized Query
+
+From [Full-Stack/backend/src/utils/studentQueries.ts](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/src/utils/studentQueries.ts):
+
+```typescript
+export async function findStudentByEmail(email: string): Promise<Student | null> {
+  const result = await query<Student>(
+    `SELECT ${studentColumns} FROM students WHERE email = $1 LIMIT 1`,
+    [email],
+  );
+
+  return result.rows[0] ?? null;
+}
+```
+
+## What I Have Learned
+
+- Structuring Express applications with modular routers and middleware.
+- Using native Node HTTP and Express for API development.
+- Parsing JSON, URL-encoded bodies, query parameters and route parameters.
+- Handling success and error status codes consistently.
+- Applying controller, service and model separation.
+- Working with in-memory and JSON-backed persistence.
+- Using bcrypt and JWT for authentication.
+- Using `express-session` and HTTP cookies.
+- Defining and querying PostgreSQL tables through `pg`.
+- Using Prisma models and PostgreSQL relations.
+- Writing TypeScript interfaces, DTOs and generic database helpers.
+- Implementing classes, constructors, private fields and polymorphism.
+- Building request validation and centralized error handling.
+- Writing Node.js HTTP tests and Jest specifications.
+- Building a modular NestJS application with Swagger.
+- Using Redis-backed throttling and audit middleware.
+- Building Go REST handlers with thread-safe in-memory state.
+
+## Currently Learning
+
+- Building deeper PostgreSQL relationships and schema design.
+- Writing joins and transaction-safe SQL.
+- Strengthening TypeScript abstraction and interface design.
+- Improving API test coverage.
+- Separating authentication from authorization.
+- Applying secure cookie and secret configuration.
+- Understanding Node.js event-loop behavior with practical experiments.
+- Improving NestJS module boundaries and test isolation.
+- Deploying containerized full-stack applications.
+
+## Future Learning Roadmap
+
+| Topic | Status |
+|---|---|
+| Advanced PostgreSQL features | ⬜ Future |
+| Database indexing and query optimization | ⬜ Future |
+| Transactions, isolation levels and locking | ⬜ Future |
+| Database normalization and ER design | ⬜ Future |
+| Deeper NestJS architecture | 🟡 In Progress |
+| Authentication and authorization design | 🟡 In Progress |
+| Role-Based Access Control (RBAC) | ⬜ Future |
+| Redis and caching strategies | 🟡 In Progress |
+| Background jobs and queues | ⬜ Future |
+| Docker and container orchestration | 🟡 In Progress |
+| CI/CD pipelines | ⬜ Future |
+| Linux and server management | ⬜ Future |
+| Cloud deployment | ⬜ Future |
+| System design | ⬜ Future |
+| Scalability and horizontal scaling | ⬜ Future |
+| Rate limiting at application and infrastructure layers | 🟡 In Progress |
+| Structured logging and monitoring | 🟡 In Progress |
+| Automated testing and coverage | 🟡 In Progress |
+| Security best practices and threat modeling | 🟡 In Progress |
+| Microservices architecture | ⬜ Future |
+| Message brokers and event streaming | ⬜ Future |
+
+## How to Run This Project
+
+No single root command runs the complete repository. Select a project folder and follow its package scripts or language toolchain.
+
+### Run the native Node.js server
+
 ```bash
-cd "pos-backend"
+cd "/home/aftab-farhan/projects/Backend Software Development"
+node server.js
+```
 
-# Run the POS server (default port: 8080)
+Default listener: `http://localhost:6000`
+
+### Run an Express project
+
+Example for the To-Do Manager:
+
+```bash
+cd "/home/aftab-farhan/projects/Backend Software Development/To-Do Manager-AS"
+npm install
+npm start
+```
+
+Check each project for the exact script names. Some use `npm run dev`, while others export an Express app without a `start` script.
+
+### Run the Go POS backend
+
+```bash
+cd "/home/aftab-farhan/projects/Backend Software Development/pos-backend"
 go run main.go
+```
 
-# Run automated unit test suite
+Run POS tests:
+
+```bash
 go test -v ./...
 ```
 
----
-
-### 2. 🛡️ Enterprise Secure API & Live Studio (`API-Part-2/`)
-
-A hardened, production-grade REST API built with **Node.js** and **Express 5** adhering to layered MVC architecture. Includes a visual **Analytics & Management Studio** available directly at `/dashboard`.
-
-#### Key Features:
-- **Interactive Visual Studio (`/dashboard`):**
-  - Live charts for traffic volume, client ecosystem distribution, status codes, and latency histograms.
-  - Built-in Postman-like API testing suite with pre-configured presets, payload prettifiers, and 1-click execution.
-  - Visual User Management directory with interactive modal CRUD actions.
-  - Real-time Node.js runtime gauges (RSS memory, heap utilization, process uptime).
-- **Defense-in-Depth Security:**
-  - **Rate Limiting:** Configurable IP rate limiter (`express-rate-limit`) preventing brute force and scraping.
-  - **Automated Bot & Scanner Blocker:** Evaluates client User-Agents against threat regexes (`sqlmap`, `nmap`, `nikto`, `curl`, `python-requests`).
-  - **Safe Rolling Audit Logging:** Asynchronous rolling logger storing normalized client records in JSON without blocking the main event loop.
-  - **Multi-Method Authentication:** Supports `Authorization: Bearer <token>`, `x-api-key` header, or `?token=<token>` query parameter.
-
-#### Running the Studio:
-```bash
-cd "API-Part-2"
-npm install
-npm run dev
-# Visit http://localhost:3000/dashboard in your browser
-```
-
----
-
-### 3. ⚡ Real-Time System & PC Observability (`ProcessinPC/`)
-
-A high-frequency, low-overhead system and process observability suite inspired by GNOME System Monitor. Designed specifically for Node.js backend runtimes.
-
-#### Key Features:
-- **Zero Heavy Frontend Dependencies:** Interactive time-series visualizer built with pure HTML5, CSS3, and native Canvas 2D.
-- **Granular V8 Memory Telemetry:** Tracks Resident Set Size (RSS), Heap Total vs. Heap Used, and External ArrayBuffers.
-- **Microsecond Delta CPU Rates:** Calculates actual CPU delta between telemetry samples for Total %, User CPU %, and Kernel System CPU %.
-- **Crash & Restart Tracking:** Detects process crashes, PID changes, and server reboots, visually displaying restart boundaries.
-- **Atomic Disk Persistence:** Temporary file swap pattern (`.tmp` to `.json`) preventing data corruption during unexpected shutdowns.
-
-#### Running Observability Engine:
-```bash
-cd "ProcessinPC"
-npm install
-npm run dev
-# Run full end-to-end integration test
-npm test
-```
-
----
-
-### 4. 📊 User-Agent Analytics & Monitoring (`Agent-Analytics/`)
-
-A dedicated telemetry and client analytics microservice that tracks, inspects, and audits incoming HTTP traffic in real time.
-
-#### Key Features:
-- **Dynamic Device Fingerprinting:** Extracts browser family, OS version, device vendor, and engine details via `ua-parser-js`.
-- **Automated Scraper Blocking:** Blocks automated CLI tools (`wget`, `httpie`, `curl`) with `403 Forbidden` and increments threat logs.
-- **1-Click CSV Export:** Generates downloadable spreadsheet summaries of all request traffic for auditing.
-- **Nodemon Loop Prevention:** Configured `nodemon.json` to ignore telemetry log modifications, avoiding restart infinite loops.
+### Run the TypeScript student API
 
 ```bash
-cd "Agent-Analytics"
+cd "/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend"
 npm install
 npm run dev
 ```
 
----
+### Run VocabMaster
 
-### 5. 🍪 Authentication & Session Architecture (`Cookies_and_Session/`)
-
-Practical implementations of stateful HTTP session handling, signed cookie verification, and session lifecycle management using `express-session` and `cookie-parser`.
-
-#### Key Concepts Implemented:
-- **Cookie Security Attributes:** Demonstrates `httpOnly` (XSS mitigation), `secure` (HTTPS enforcement), and `sameSite: 'strict' | 'lax'` (CSRF defense).
-- **Session Lifecycle:** User login authentication, server-side session allocation, session validation on protected routes, and session destruction on logout.
+From the VocabMaster workspace:
 
 ```bash
-cd "Cookies_and_Session"
+cd "/home/aftab-farhan/projects/Backend Software Development/VocabMaster"
 npm install
-npm run dev
+npm run dev:backend
+npm run dev:frontend
 ```
 
----
+Backend default: `http://localhost:4000`
 
-### 6. 🏛️ Cross-Language Data Modeling & OOP (`Data Modeling Part One/`)
+Swagger: `http://localhost:4000/api/docs`
 
-A comprehensive comparative study demonstrating **Object-Oriented Programming (OOP)**, **Data Modeling**, and **Encapsulation** across **C++**, **Go**, and **JavaScript**:
+Frontend default: `http://localhost:3000`
 
-| Concept | C++ (`Object.cpp`, `encapsulation.cpp`) | Go (`go-oop/main.go`) | JavaScript (`JS/controllers/`) |
-| :--- | :--- | :--- | :--- |
-| **Encapsulation** | `private` / `public` access specifiers | Exported vs unexported identifiers (Capitalization) | ES6 Classes / Closure scopes |
-| **Methods & Behavior** | Class member functions | Functions with explicit Pointer Receivers `(s *Student)` | Prototype methods & arrow functions |
-| **Composition** | Class inheritance & composition | Structural embedding / Composition over inheritance | Prototypal delegation & object merging |
-| **Memory Model** | Stack vs Heap pointers, manual deallocation | Escape analysis & runtime garbage collection | V8 Garbage Collected Heap |
-
----
-
-### 7. 🧮 High-Performance Data Pipelines (`Problem-Practice/`)
-
-Optimized, functional array transformation recipes for backend developers processing tabular JSON records:
-
-1. **Filtering by Multi-Criteria (`Filter_by_criteria.js`):** In-stock conditions, pricing thresholds, active record filters.
-2. **Lightweight DTO Projections (`Map_to_lighter.js`):** Stripping heavy internal database fields before returning HTTP responses.
-3. **Chained Transformations (`Chained_transformations.js`):** Fluent compose pipelines: `filter(...) -> map(...) -> sort(...)`.
-4. **Aggregations & Valuations (`reduce.js`):** Inventory valuation, category grouping, and statistical roll-ups.
-5. **Memory-Safe Pagination (`Pagination_with_slice.js`):** Slicing large result sets with `page` and `limit` boundaries.
-
----
-
-### 8. 🐹 Standard Library Concurrent REST API (`main.go`)
-
-Located at the repository root, `main.go` demonstrates building a high-speed RESTful Task API using **pure Go standard library** primitives without third-party frameworks.
-
-- **Routing:** Path parsing and method dispatching via `net/http`.
-- **Thread Safety:** `TaskStore` guarded with `sync.Mutex` for safe concurrent reads and writes.
-- **HTTP Status Semantics:** Proper status code returns (`200 OK`, `201 Created`, `204 No Content`, `400 Bad Request`, `404 Not Found`).
+Docker option:
 
 ```bash
-# Run the root Go REST API
-go run main.go
+cd "/home/aftab-farhan/projects/Backend Software Development/VocabMaster"
+docker compose up --build
 ```
 
----
-
-### 9. 🌐 Modular Routing & Assignments (`part-1-api-routing/`, `AS-1/`)
-
-- **`part-1-api-routing/`:** Segregates business concerns into individual router modules (`user.js`, `payment.js`, `student.js`) backed by **Joi** schema validation rules.
-- **`AS-1/`:** Production assignment implementing a persistent MongoDB/Mongoose blog platform with full CRUD capabilities.
-
----
-
-## 🚀 Quick Start & Installation
+## Installation and Setup
 
 ### Prerequisites
-- **Go:** `v1.21` or higher ([Download Go](https://go.dev/dl/))
-- **Node.js:** `v18.x` or higher ([Download Node.js](https://nodejs.org/))
-- **Git:** Installed on your system
 
-### 1. Clone the Monorepo
+- Node.js 18 or newer for the current Express, TypeScript and NestJS projects.
+- npm.
+- PostgreSQL when running PostgreSQL-backed projects.
+- Go 1.22 or newer for `pos-backend` if applicable.
+- Docker and Docker Compose for VocabMaster container workflows.
+- TypeScript compiler for standalone TypeScript projects.
+
+### General JavaScript setup
+
 ```bash
-git clone https://github.com/aftabfarhanarko/Backend-Golang.git
-cd Backend-Golang
-```
-
-### 2. Running Go Services
-
-#### A. Run the Complete POS Backend:
-```bash
-cd "pos-backend"
-go run main.go
-# Server running at http://localhost:8080
-```
-
-#### B. Run the In-Memory Task API:
-```bash
-# From workspace root:
-go run main.go
-# Server running at http://localhost:8080
-```
-
-### 3. Running Node.js / Express Services
-
-#### A. Enterprise Secure Studio & API:
-```bash
-cd "API-Part-2"
+cd "<project-directory>"
 npm install
 npm run dev
-# Studio live at http://localhost:3000/dashboard
 ```
 
-#### B. Real-Time Observability Dashboard:
+If a project uses only source scripts and has no dev script:
+
 ```bash
-cd "ProcessinPC"
-npm install
-npm run dev
-# Access monitor at http://localhost:3000
+node app.js
 ```
 
-#### C. User-Agent Analytics Service:
+### PostgreSQL setup
+
+1. Create a PostgreSQL database.
+2. Use the SQL in [Full-Stack/backend/database/schema.sql](/home/aftab-farhan/projects/Backend Software Development/Full-Stack/backend/database/schema.sql).
+3. Configure database variables or update the project connection settings.
+4. For VocabMaster, configure `DATABASE_URL` and run Prisma commands:
+
 ```bash
-cd "Agent-Analytics"
-npm install
-npm run dev
-# Access analytics at http://localhost:3000
+cd "/home/aftab-farhan/projects/Backend Software Development/VocabMaster"
+npm run prisma:generate --workspace=backend
+npm run prisma:migrate --workspace=backend
+npm run seed --workspace=backend
 ```
 
----
+### Environment variables
 
-## 📡 Master API Endpoints Summary
+Never commit real credentials. Use `.env.example` files as templates and create local `.env` files.
 
-### 🛒 POS Backend API (`:8080`)
+Common variables include:
 
-| Method | Endpoint | Description | Status Code |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/health` | System health check | `200 OK` |
-| `GET` | `/api/dashboard` | Sales summary, daily revenue & low-stock alerts | `200 OK` |
-| `GET` | `/api/products` | Retrieve all products (supports `?q=` and `?category_id=`) | `200 OK` |
-| `GET` | `/api/products/low-stock` | List products below minimum stock threshold | `200 OK` |
-| `GET` | `/api/products/barcode/{code}` | Retrieve single product via barcode scan | `200 OK` / `404 Not Found` |
-| `POST` | `/api/products` | Create a new product | `201 Created` / `400 Bad Request` |
-| `PUT` | `/api/products/{id}` | Update existing product details | `200 OK` / `404 Not Found` |
-| `DELETE` | `/api/products/{id}` | Remove product from inventory | `200 OK` / `404 Not Found` |
-| `GET` | `/api/categories` | Retrieve all categories | `200 OK` |
-| `POST` | `/api/categories` | Create a new category | `201 Created` |
-| `GET` | `/api/customers` | Retrieve customers (supports search `?q=`) | `200 OK` |
-| `POST` | `/api/customers` | Register customer & initialize loyalty points | `201 Created` |
-| `POST` | `/api/orders/checkout` | Execute atomic POS sale checkout & stock deduction | `201 Created` / `400 Bad Request` |
-| `GET` | `/api/orders` | Retrieve sales orders history | `200 OK` |
-| `GET` | `/api/orders/invoice/{invoice}`| Retrieve invoice and printed receipt data | `200 OK` / `404 Not Found` |
-| `POST` | `/api/orders/{id}/void` | Void order and automatically restore stock | `200 OK` / `400 Bad Request` |
-
-#### Sample POS Checkout Request:
-```bash
-curl -X POST http://localhost:8080/api/orders/checkout \
-  -H "Content-Type: application/json" \
-  -d '{
-    "customer_id": 1,
-    "customer_name": "Tanvir Ahmed",
-    "items": [
-      {"product_id": 1, "quantity": 2},
-      {"product_id": 2, "quantity": 1}
-    ],
-    "discount": 5.0,
-    "tax_percent": 5.0,
-    "paid_amount": 150.0,
-    "payment_method": "BKASH"
-  }'
+```text
+PORT=
+DB_HOST=
+DB_PORT=
+DB_NAME=
+DB_USER=
+DATABASE_URL=
+JWT_SECRET=
+JWT_ACCESS_SECRET=
+JWT_REFRESH_SECRET=
+SESSION_SECRET=
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+CORS_ORIGIN=
+REDIS_URL=
 ```
 
----
+The exact variable names differ by project; inspect that project's source and `.env.example`.
 
-### 🛡️ Enterprise Studio & User API (`:3000`)
+## Author Information
 
-| Method | Endpoint | Description | Auth Required |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/dashboard` | Interactive Web Studio & Live Analytics UI | No |
-| `GET` | `/api/health` | Process uptime & V8 memory metrics | No |
-| `GET` | `/api/analytics` | Traffic volume, threat blocks & latency distribution | No |
-| `GET` | `/api/users` | List users (supports search and pagination) | `Bearer` / `x-api-key` |
-| `GET` | `/api/users/:id` | Retrieve single user record | `Bearer` / `x-api-key` |
-| `POST` | `/api/users` | Create user with schema validation | `Bearer` / `x-api-key` |
-| `PUT` | `/api/users/:id` | Update user record | `Bearer` / `x-api-key` |
-| `DELETE` | `/api/users/:id` | Delete user record | `Bearer` / `x-api-key` |
+- **Author:** Aftab Farhan Arko
+- **Repository:** [aftabfarhanarko/Backend-Golang](https://github.com/aftabfarhanarko/Backend-Golang)
 
----
-
-## 🛡️ Production Best Practices & Security Standards
-
-1. **Concurrency & Thread Safety:**
-   - Always protect shared in-memory state with `sync.Mutex` or `sync.RWMutex`.
-   - Never perform lock-copying; pass stores and state via pointers.
-2. **Context Deadlines & Graceful Shutdown:**
-   - Always propagate `context.Context` to network calls, database queries, and background goroutines.
-   - Listen for OS termination signals (`SIGINT`, `SIGTERM`) to flush buffered writes and finish in-flight requests.
-3. **Defense-in-Depth Middleware Pipeline:**
-   - Apply strict IP rate limiting on public endpoints to neutralize DDoS and brute force attacks.
-   - Validate and sanitize all inbound request payloads using strict schemas (**Joi** in Express, struct binding tags in Go).
-4. **Resilient Logging & Telemetry:**
-   - Use asynchronous, non-blocking rolling buffers for audit logs to prevent disk I/O bottlenecks.
-   - Never log sensitive client credentials, secrets, or unmasked credit card numbers.
-5. **Secure Cookie Management:**
-   - Always configure cookies with `httpOnly: true`, `secure: true` (in production HTTPS), and `sameSite: 'strict'` or `'lax'` to prevent cross-site scripting and request forgery.
-
----
-
-## 👨‍💻 Author & License
-
-Developed and maintained by **[Aftab Farhan Arko](https://github.com/aftabfarhanarko)**.
-
-Distributed under the **MIT License**. Feel free to use, modify, and extend this repository for your own projects, learning, and production architectures. Contributions and pull requests are warmly welcomed!
+This repository is a living backend engineering portfolio and learning notebook. Projects may intentionally remain at different levels of maturity as new concepts are added and existing implementations are improved.
