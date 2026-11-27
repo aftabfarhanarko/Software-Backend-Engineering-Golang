@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18251f;
+      --muted: #68756e;
+      --paper: #f4f3ee;
+      --line: #e4e5dd;
+      --forest: #244b3c;
+      --brass: #c5a66a;
+    }
+
+    body {
+      background: var(--paper) !important;
+      color: var(--ink) !important;
+    }
+
+    .page-content {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.9fr) minmax(0, 1.35fr);
+      align-items: start;
+      gap: 1.5rem;
+    }
+
+    .page-header {
+      background: #172820 !important;
+      border-color: #263a30 !important;
+      box-shadow: 0 18px 45px rgb(24 37 31 / 12%) !important;
+    }
+
+    .page-header > div:first-child {
+      background: #172820 !important;
+    }
+
+    .page-header .brand-mark {
+      color: #e0c58d !important;
+      background: rgb(255 255 255 / 8%) !important;
+      border-color: rgb(255 255 255 / 15%) !important;
+    }
+
+    .surface {
+      border-color: var(--line) !important;
+      border-radius: 1.2rem !important;
+      box-shadow: 0 12px 34px rgb(24 37 31 / 6%) !important;
+    }
+
+    .field-control {
+      background: #fbfbf8 !important;
+      border-color: #dfe2da !important;
+    }
+
+    main input:not([type="radio"]), main textarea {
+      background: #fbfbf8 !important;
+      border-color: #dfe2da !important;
+    }
+
+    main input:not([type="radio"]):focus, main textarea:focus {
+      border-color: var(--forest) !important;
+      --tw-ring-color: rgb(36 75 60 / 16%) !important;
+    }
+
+    main h2 { color: var(--ink) !important; }
+    main section > div:first-child > span { color: var(--forest) !important; background: #edf1eb !important; }
+
+    #refreshStudentsBtn:hover {
+      border-color: #b9c6bd;
+      color: var(--forest);
+    }
+
+    .field-control:focus {
+      border-color: var(--forest) !important;
+      --tw-ring-color: rgb(36 75 60 / 16%) !important;
+    }
+
+    .primary-action {
+      background: var(--forest) !important;
+      box-shadow: 0 7px 16px rgb(36 75 60 / 16%) !important;
+    }
+
+    .primary-action:hover {
+      background: #193a2d !important;
+    }
+
+    .table-head {
+      background: #f6f6f1 !important;
+      color: #647169 !important;
+    }
+
+    @media (max-width: 900px) {
+      .page-content { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body
+  class="min-h-screen py-8 px-4 sm:px-6 lg:py-12">
+
+  <div class="max-w-7xl mx-auto">
+    <!-- Header Banner -->
+    <header class="page-header rounded-3xl border overflow-hidden mb-6">
+      <div class="px-6 sm:px-8 py-7 text-white relative">
+        <div class="flex items-center gap-4">
+          <div
+            class="brand-mark w-14 h-14 rounded-2xl border flex items-center justify-center text-2xl shrink-0">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">Student Registration</h1>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1">Student records · Registration and directory</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+    <!-- Registration Form -->
+    <main class="surface bg-white border p-6 sm:p-8">
+      <form id="studentRegistrationForm" novalidate class="space-y-8">
+
+        <!-- 1. Personal Information -->
+        <section aria-labelledby="section-personal">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+            <span
+              class="w-8 h-8 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-sm font-bold shadow-sm">
+              <i class="fa-regular fa-user"></i>
+            </span>
+            <div>
+              <h2 id="section-personal" class="text-base font-bold text-slate-900">1. Personal Information</h2>
+              <p class="text-xs text-slate-500">Basic identification details</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- First Name -->
+            <div>
+              <label for="firstName" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                First Name <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-regular fa-id-badge"></i>
+                </span>
+                <input type="text" id="firstName" name="firstName" autocomplete="given-name" required
+                  placeholder="e.g. John"
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition">
+              </div>
+              <p class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+
+            <!-- Last Name -->
+            <div>
+              <label for="lastName" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Last Name <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-regular fa-id-badge"></i>
+                </span>
+                <input type="text" id="lastName" name="lastName" autocomplete="family-name" required
+                  placeholder="e.g. Doe"
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition">
+              </div>
+              <p class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+
+            <!-- Date of Birth -->
+            <div>
+              <label for="dob" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Date of Birth <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-regular fa-calendar-days"></i>
+                </span>
+                <input type="date" id="dob" name="dob" autocomplete="bday" required
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition">
+              </div>
+              <p class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+
+            <!-- Gender -->
+            <div>
+              <fieldset>
+                <legend class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Gender <span class="text-rose-500">*</span>
+                </legend>
+                <div class="grid grid-cols-3 gap-2">
+                  <label
+                    class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-xs font-medium cursor-pointer hover:border-brand-300 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-700 transition">
+                    <input type="radio" name="gender" value="Male" class="text-brand-600 focus:ring-brand-500" required>
+                    <span>Male</span>
+                  </label>
+                  <label
+                    class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-xs font-medium cursor-pointer hover:border-brand-300 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-700 transition">
+                    <input type="radio" name="gender" value="Female" class="text-brand-600 focus:ring-brand-500">
+                    <span>Female</span>
+                  </label>
+                  <label
+                    class="flex items-center justify-center gap-1.5 p-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-xs font-medium cursor-pointer hover:border-brand-300 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 has-[:checked]:text-brand-700 transition">
+                    <input type="radio" name="gender" value="Other" class="text-brand-600 focus:ring-brand-500">
+                    <span>Other</span>
+                  </label>
+                </div>
+              </fieldset>
+              <p id="gender-error" class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Contact & Address Details -->
+        <section aria-labelledby="section-contact">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3 mb-5">
+            <span
+              class="w-8 h-8 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-sm font-bold shadow-sm">
+              <i class="fa-solid fa-phone-volume"></i>
+            </span>
+            <div>
+              <h2 id="section-contact" class="text-base font-bold text-slate-900">2. Contact & Address Details</h2>
+              <p class="text-xs text-slate-500">How we can get in touch with you</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Email Address <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-regular fa-envelope"></i>
+                </span>
+                <input type="email" id="email" name="email" autocomplete="email" required
+                  placeholder="student@example.com"
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition">
+              </div>
+              <p class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Phone Number <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-solid fa-phone"></i>
+                </span>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="+1 234 567 8900"
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition">
+              </div>
+              <p class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+
+            <!-- Address -->
+            <div class="sm:col-span-2">
+              <label for="address" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                Address <span class="text-rose-500">*</span>
+              </label>
+              <div class="relative">
+                <span class="absolute top-3 left-3.5 pointer-events-none text-slate-400 text-sm">
+                  <i class="fa-solid fa-location-dot"></i>
+                </span>
+                <textarea id="address" name="address" rows="3" required placeholder="House/Street, City, Country"
+                  class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition"></textarea>
+              </div>
+              <p class="error-msg hidden text-xs text-rose-500 mt-1 font-medium"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-end gap-3">
+          <button type="reset" id="resetBtn"
+            class="w-full sm:w-auto px-6 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-semibold text-sm transition">
+            Reset
+          </button>
+          <button type="submit" id="submitBtn"
+            class="primary-action w-full sm:w-auto px-7 py-2.5 rounded-xl text-white font-semibold text-sm transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+            Submit
+          </button>
+        </div>
+
+      </form>
+    </main>
+
+    <section aria-labelledby="students-heading"
+      class="surface bg-white border overflow-hidden">
+      <div class="px-6 sm:px-8 py-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div>
+          <h2 id="students-heading" class="text-lg font-extrabold text-slate-900">Registered Students</h2>
+          <p id="studentsStatus" class="text-sm text-slate-500 mt-1" aria-live="polite">Loading students...</p>
+        </div>
+        <button type="button" id="refreshStudentsBtn"
+          class="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-sm transition">
+          <i class="fa-solid fa-rotate mr-2" aria-hidden="true"></i>Refresh
+        </button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-slate-100 text-left text-sm">
+          <thead class="table-head text-xs uppercase tracking-wider">
+            <tr>
+              <th scope="col" class="px-5 py-3">Name</th>
+              <th scope="col" class="px-5 py-3">Date of birth</th>
+              <th scope="col" class="px-5 py-3">Gender</th>
+              <th scope="col" class="px-5 py-3">Email</th>
+              <th scope="col" class="px-5 py-3">Phone</th>
+              <th scope="col" class="px-5 py-3">Address</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTableBody" class="divide-y divide-slate-100 text-slate-700">
+            <tr><td colspan="6" class="px-5 py-8 text-center text-slate-500">Loading students...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    </div>
+  </div>
+
+  <!-- Success Notification Modal -->
+  <div id="successModal"
+    class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-slate-100">
+      <div
+        class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-900">Submitted Successfully!</h3>
+      <p class="text-xs text-slate-500 mt-1 mb-4">Check browser console (F12) to see logged data.</p>
+
+      <div id="modalSummary"
+        class="text-left bg-slate-50 rounded-2xl p-4 text-xs space-y-2 border border-slate-100 mb-5 font-medium text-slate-700">
+        <!-- Injected via JS -->
+      </div>
+
+      <button type="button" id="closeModalBtn"
+        class="w-full py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold rounded-xl text-sm transition shadow-md shadow-brand-500/20">
+        Done
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('studentRegistrationForm');
+      const successModal = document.getElementById('successModal');
+      const modalSummary = document.getElementById('modalSummary');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const studentsTableBody = document.getElementById('studentsTableBody');
+      const studentsStatus = document.getElementById('studentsStatus');
+
+      async function loadStudents() {
+        studentsStatus.textContent = 'Loading students...';
+        try {
+          const response = await fetch('http://localhost:3000/api/getUnvi');
+          const result = await response.json();
+          if (!response.ok || !Array.isArray(result.data)) {
+            throw new Error(result.message || 'Could not load students.');
+          }
+
+          studentsTableBody.replaceChildren();
+          studentsStatus.textContent = `${result.data.length} student${result.data.length === 1 ? '' : 's'}`;
+
+          if (result.data.length === 0) {
+            const row = studentsTableBody.insertRow();
+            const cell = row.insertCell();
+            cell.colSpan = 6;
+            cell.className = 'px-5 py-8 text-center text-slate-500';
+            cell.textContent = 'No students registered yet.';
+            return;
+          }
+
+          result.data.forEach(student => {
+            const row = studentsTableBody.insertRow();
+            [student.fullName, student.dateOfBirth, student.gender, student.email, student.phone, student.address]
+              .forEach(value => {
+                const cell = row.insertCell();
+                cell.className = 'px-5 py-4 whitespace-nowrap';
+                cell.textContent = value ?? '';
+              });
+          });
+        } catch (error) {
+          studentsTableBody.replaceChildren();
+          const row = studentsTableBody.insertRow();
+          const cell = row.insertCell();
+          cell.colSpan = 6;
+          cell.className = 'px-5 py-8 text-center text-rose-600';
+          cell.textContent = 'Could not load students. Check that the backend and database are running.';
+          studentsStatus.textContent = error.message || 'Failed to load students';
+        }
+      }
+
+      document.getElementById('refreshStudentsBtn').addEventListener('click', loadStudents);
+      loadStudents();
+
+      // Clear errors on input
+      form.querySelectorAll('input, textarea').forEach(element => {
+        element.addEventListener('input', () => {
+          clearElementError(element);
+        });
+      });
+
+      function clearElementError(element) {
+        element.classList.remove('border-rose-400', 'ring-2', 'ring-rose-200');
+        const parent = element.closest('div');
+        const errorMsg = parent ? parent.querySelector('.error-msg') : null;
+        if (errorMsg) {
+          errorMsg.classList.add('hidden');
+          errorMsg.textContent = '';
+        }
+      }
+
+      function showElementError(element, message) {
+        element.classList.add('border-rose-400', 'ring-2', 'ring-rose-200');
+        const parent = element.closest('div');
+        const errorMsg = parent ? parent.querySelector('.error-msg') : null;
+        if (errorMsg) {
+          errorMsg.classList.remove('hidden');
+          errorMsg.textContent = message;
+        }
+      }
+
+      // Form Submit & Validation
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        const fields = [
+          { id: 'firstName', msg: 'First name is required' },
+          { id: 'lastName', msg: 'Last name is required' },
+          { id: 'dob', msg: 'Date of birth is required' },
+          { id: 'email', msg: 'Valid email is required', validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+          { id: 'phone', msg: 'Valid phone is required', validate: (v) => v.trim().length >= 7 },
+          { id: 'address', msg: 'Address is required' }
+        ];
+
+        fields.forEach(field => {
+          const input = document.getElementById(field.id);
+          if (!input) return;
+
+          const val = input.value.trim();
+          if (!val) {
+            showElementError(input, field.msg);
+            isValid = false;
+          } else if (field.validate && !field.validate(val)) {
+            showElementError(input, field.msg);
+            isValid = false;
+          } else {
+            clearElementError(input);
+          }
+        });
+
+        // Gender validation
+        const genderChecked = form.querySelector('input[name="gender"]:checked');
+        const genderError = document.getElementById('gender-error');
+        if (!genderChecked) {
+          genderError.textContent = 'Please select a gender.';
+          genderError.classList.remove('hidden');
+          isValid = false;
+        } else {
+          genderError.classList.add('hidden');
+        }
+
+        if (isValid) {
+          const firstName = document.getElementById('firstName').value.trim();
+          const lastName = document.getElementById('lastName').value.trim();
+          const dob = document.getElementById('dob').value;
+          const gender = genderChecked.value;
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const address = document.getElementById('address').value.trim();
+
+          // Structured simple data
+          const studentData = {
+            firstName: firstName,
+            lastName: lastName,
+            fullName: `${firstName} ${lastName}`,
+            dateOfBirth: dob,
+            gender: gender,
+            email: email,
+            phone: phone,
+            address: address
+          };
+
+          const submitBtn = document.getElementById('submitBtn');
+          submitBtn.disabled = true;
+          submitBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+          try {
+            const response = await fetch('http://localhost:3000/api/students', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(studentData)
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Registration failed.');
+            await loadStudents();
+
+          // Console output
+          console.group('🎓 Student Registration Data');
+          console.log('Student Info:', result);
+          console.table(result);
+          console.groupEnd();
+
+          const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+          })[character]);
+
+          // Modal summary
+          modalSummary.innerHTML = `
+            <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+              <span class="text-slate-400">Name:</span>
+              <span class="font-semibold text-slate-800">${escapeHtml(studentData.fullName)}</span>
+            </div>
+            <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+              <span class="text-slate-400">Gender / DOB:</span>
+              <span class="text-slate-800">${escapeHtml(studentData.gender)}, ${escapeHtml(studentData.dateOfBirth)}</span>
+            </div>
+            <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+              <span class="text-slate-400">Email:</span>
+              <span class="text-slate-800">${escapeHtml(studentData.email)}</span>
+            </div>
+            <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+              <span class="text-slate-400">Phone:</span>
+              <span class="text-slate-800">${escapeHtml(studentData.phone)}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Address:</span>
+              <span class="text-slate-800 truncate max-w-[150px]">${escapeHtml(studentData.address)}</span>
+            </div>
+          `;
+
+          successModal.classList.remove('hidden');
+          } catch (error) {
+            alert(error.message || 'Could not connect to the backend. Make sure it is running.');
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+          }
+        }
+      });
+
+      // Close modal
+      closeModalBtn.addEventListener('click', () => {
+        successModal.classList.add('hidden');
+        form.reset();
+      });
+
+      // Reset button
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        setTimeout(() => {
+          form.querySelectorAll('.error-msg').forEach(el => el.classList.add('hidden'));
+          form.querySelectorAll('input, textarea').forEach(el => {
+            el.classList.remove('border-rose-400', 'ring-2', 'ring-rose-200');
+          });
+        }, 50);
+      });
+    });
+  </script>
+</body>
+
+</html>

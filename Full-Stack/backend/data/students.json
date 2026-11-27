@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Debra",
+    "lastName": "Roman",
+    "dateOfBirth": "1981-07-10",
+    "gender": "Female",
+    "email": "nimugudy@example.com",
+    "phone": "+1 (855) 521-8174",
+    "address": "802 South Milton Lane",
+    "id": "ddd5a752-2976-4772-88f1-a450207bcce5",
+    "createdAt": "2026-11-21T13:36:43.469Z",
+    "updatedAt": "2026-11-21T13:36:43.469Z"
+  },
+  {
+    "firstName": "Emmanuel",
+    "lastName": "Russell",
+    "dateOfBirth": "1983-12-23",
+    "gender": "Male",
+    "email": "furisala@example.com",
+    "phone": "+1 (339) 821-3203",
+    "address": "76 South Milton Court",
+    "id": "d948d12b-2bf3-41e3-b778-10444db0c423",
+    "createdAt": "2026-11-21T13:36:47.915Z",
+    "updatedAt": "2026-11-21T13:36:47.915Z"
+  },
+  {
+    "firstName": "AFTAB",
+    "lastName": "ARKO",
+    "dateOfBirth": "2026-11-14",
+    "gender": "Male",
+    "email": "aftabfarhan324@gmail.com",
+    "phone": "+8801613410880",
+    "address": "Kaderabad Housing , Mohammadpur, Road 2",
+    "id": "4d879c31-d422-433b-bca1-e550a0936c8f",
+    "createdAt": "2026-11-21T13:37:12.071Z",
+    "updatedAt": "2026-11-21T13:37:12.071Z"
+  }
+]
